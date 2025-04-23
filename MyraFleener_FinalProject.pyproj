@@ -24,6 +24,7 @@
     <Folder Include="decryptorPackage\" />
     <Folder Include="mainPackage\" />
     <Folder Include="Data\" />
+    <Folder Include="MovieDecryptionPackage\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="decryptorPackage\decryptor.py">
@@ -36,6 +37,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mainPackage\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MovieDecryptionPackage\MovieDecryption.py" />
+    <Compile Include="MovieDecryptionPackage\__init__.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
