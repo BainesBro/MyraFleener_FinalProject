@@ -1,6 +1,6 @@
 # File Name: MovieDecryption.py
-# Student Name: Cole Crooks
-# email: crookscl@mail.uc.edu
+# Student Name: Collin Baines, Cole Crooks, Vanshika Rana
+# email: bainesct@mail.uc.edu, crookscl@mail.uc.edu, ranava@mail.uc.edu
 # Assignment Number: Final Project
 # Due Date: 04/24/2025
 # Course #/Section: IS4010-002
@@ -8,7 +8,7 @@
 # Brief Description of the assignment: This assignment requires us to decrypt files to retrieve a location and movie name, as well as make a sign and take a picture in said location.
 
 # Brief Description of what this module does: This module decrypts UCEnglish.txt using the indexes provided in EncryptedGroupHints Spring 2025.json
-# Citations: ChatGPT, Gemini, stackoverflow, *prayer*
+# Citations: ChatGPT, Gemini, stackoverflow, *prayer*, https://www.imdb.com/title/tt0091217/quotes/?item=qt3195774
 
 # Anything else that's relevant:
 
@@ -27,7 +27,6 @@ class MovieDecryptor:
         script_dir = os.path.dirname(os.path.abspath(__file__))  # path to MovieDecryption.py
         data_path = os.path.join(script_dir, "..", "Data", filename)
         full_path = os.path.abspath(data_path)
-        print(f"Loading file from: {full_path}")  # optional debug line
 
         try:
             with open(full_path, 'r') as f:
