@@ -1,6 +1,6 @@
 # File Name: main.py
-# Student Name: Collin Baines, Cole Crooks
-# email: bainesct@mail.uc.edu, crookscl@mail.uc.edu
+# Student Name: Collin Baines, Cole Crooks, Vanshika Rana
+# email: bainesct@mail.uc.edu, crookscl@mail.uc.edu, ranava@mail.uc.edu
 # Assignment Number: Final Project
 # Due Date: 04/24/2025
 # Course #/Section: IS4010-002
@@ -8,13 +8,26 @@
 # Brief Description of the assignment: This assignment requires us to decrypt files to retrieve a location and movie name, as well as make a sign and take a picture in said location.
 
 # Brief Description of what this module does: This module calls upon functions made in our additional .py files
-# Citations: ChatGPT, Gemini, stackoverflow, *prayer*
+# Citations: ChatGPT, Gemini, stackoverflow, *prayer*, https://www.imdb.com/title/tt0091217/quotes/?item=qt3195774
 
 # Anything else that's relevant:
 
 from decryptorPackage.decryptor import decrypt_location
 from MovieDecryptionPackage.MovieDecryption import MovieDecryptor
+from PIL import Image
+import matplotlib.pyplot as plt
 import os
+
+def display_group_photo(photo_path):
+    try:
+        img = Image.open(photo_path)
+        plt.figure(figsize=(12, 8))
+        plt.imshow(img)
+        plt.axis('off')
+        plt.title("Group Scavenger Hunt Photo")
+        plt.show()
+    except FileNotFoundError:
+        print(f"Photo not found at: {photo_path}")
 
 def main():
     # Decrypt the location
@@ -23,19 +36,26 @@ def main():
     english_file = "data/UCEnglish.txt"
 
     location = decrypt_location(hint_file, english_file, team_name)
-    print(f"Decrypted location for '{team_name}':")
-    print(location)
+    print(f"\nDecrypted location for '{team_name}': {location}")
 
     # Decrypt the movie title
     decryption_key_bytes = b"___325px9Qm4Sq1OrAgutpUHzAj49W0J9oHrRVhS2yg="
     decryptor = MovieDecryptor(decryption_key_bytes)
-
     movie_title = decryptor.decrypt_movie_title()
 
     if movie_title:
-        print(f"The decrypted movie title is: {movie_title}")
+        # Remove "Your movie is " if it exists
+        if movie_title.lower().startswith("your movie is "):
+            movie_title = movie_title[len("Your movie is "):]
+        print(f"\nThe decrypted movie title is: {movie_title}")
     else:
-        print("Failed to decrypt the movie title.")
+        print("\nFailed to decrypt the movie title.")
+
+    # Show group photo
+    photo_path = "data/group_photo.jpeg"
+    display_group_photo(photo_path)
 
 if __name__ == "__main__":
     main()
+
+
